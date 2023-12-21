@@ -17,9 +17,20 @@ console.log(resultNum);
 
 printResult(resultNum);
 
+// let resultsArray: number[] = [];
+const resultsArray: { res: number; print: () => void }[] = [];
+
 buttonElement.addEventListener("click", () => {
   const num1 = +num1Input.value;
   const num2 = +num2Input.value;
   const result = addNum(num1, num2);
-  printResult(result);
+  const resultContianer: { res: number; print: () => void } = {
+    res: result,
+    print() {
+      console.log(this.res);
+    },
+  };
+  resultsArray.push(resultContianer);
+  // printResult(resultsArray);
+  resultsArray[0].print();
 });

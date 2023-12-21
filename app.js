@@ -11,9 +11,19 @@ var resultNum = addNum(5, 3);
 var isDone = false;
 console.log(resultNum);
 printResult(resultNum);
+// let resultsArray: number[] = [];
+var resultsArray = [];
 buttonElement.addEventListener("click", function () {
     var num1 = +num1Input.value;
     var num2 = +num2Input.value;
     var result = addNum(num1, num2);
-    printResult(result);
+    var resultContianer = {
+        res: result,
+        print: function () {
+            console.log(this.res);
+        },
+    };
+    resultsArray.push(resultContianer);
+    // printResult(resultsArray);
+    resultsArray[0].print();
 });
