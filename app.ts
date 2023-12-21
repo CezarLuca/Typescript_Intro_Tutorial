@@ -17,14 +17,18 @@ console.log(resultNum);
 
 printResult(resultNum);
 
+type CalculationResults = { res: number; print: () => void };
+
 // let resultsArray: number[] = [];
-const resultsArray: { res: number; print: () => void }[] = [];
+// const resultsArray: { res: number; print: () => void }[] = []
+const resultsArray: CalculationResults[] = [];
 
 buttonElement.addEventListener("click", () => {
   const num1 = +num1Input.value;
   const num2 = +num2Input.value;
   const result = addNum(num1, num2);
-  const resultContianer: { res: number; print: () => void } = {
+  // const resultContianer: { res: number; print: () => void } = {
+  const resultContianer: CalculationResults = {
     res: result,
     print() {
       console.log(this.res);

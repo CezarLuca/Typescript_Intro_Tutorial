@@ -12,11 +12,13 @@ var isDone = false;
 console.log(resultNum);
 printResult(resultNum);
 // let resultsArray: number[] = [];
+// const resultsArray: { res: number; print: () => void }[] = []
 var resultsArray = [];
 buttonElement.addEventListener("click", function () {
     var num1 = +num1Input.value;
     var num2 = +num2Input.value;
     var result = addNum(num1, num2);
+    // const resultContianer: { res: number; print: () => void } = {
     var resultContianer = {
         res: result,
         print: function () {
