@@ -51,7 +51,7 @@ enum OutputMode {
 
 // function printResult(result: any, printMode: string) {
 function printResult(
-  result: CalculationResults[],
+  result: CalculationResults,
   printMode: "console" | "alert"
 ) {
   if (printMode === "console") {
@@ -62,7 +62,7 @@ function printResult(
   // console.log(result);
 }
 
-function printResult2(result: CalculationResults[], printMode: OutputMode) {
+function printResult2(result: CalculationResults, printMode: OutputMode) {
   if (printMode === OutputMode.CONSOLE) {
     console.log(result);
   } else if (printMode === OutputMode.ALERT) {
@@ -83,18 +83,19 @@ interface CalculationContainer {
 }
 
 // type CalculationResults = { res: number; print: () => void };
-type CalculationResults = CalculationContainer;
+type CalculationResults = CalculationContainer[];
 
 // let resultsArray: number[] = [];
 // const resultsArray: { res: number; print: () => void }[] = []
-const resultsArray: CalculationResults[] = [];
+// const resultsArray: Array<CalculationContainer> = [];
+const resultsArray: CalculationResults = [];
 
 buttonElement.addEventListener("click", () => {
   const num1 = +num1Input.value;
   const num2 = +num2Input.value;
   const result = addNum(num1, num2);
   // const resultContianer: { res: number; print: () => void } = {
-  const resultContianer: CalculationResults = {
+  const resultContianer: CalculationContainer = {
     res: result,
     print() {
       console.log(this.res);
@@ -107,3 +108,10 @@ buttonElement.addEventListener("click", () => {
   printResult2(resultsArray, OutputMode.ALERT);
   // resultsArray[0].print();
 });
+
+function logAndEcho<T>(val: T) {
+  console.log(val);
+  return val;
+}
+
+logAndEcho<string>("Hi there!").split(" ");
