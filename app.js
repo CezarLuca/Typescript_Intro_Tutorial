@@ -1,48 +1,31 @@
+"use strict";
 // class User {
 //   name: string;
 //   // private age: number;
 //   age: number;
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var User = /** @class */ (function () {
-    function User(name, age) {
+class User {
+    constructor(name, age) {
         this.name = name;
         this.age = age;
         // this.name = name;
         // this.age = age;
     }
-    User.prototype.print = function () {
+    print() {
         console.log(this.name);
-    };
-    return User;
-}());
-var Admin = /** @class */ (function (_super) {
-    __extends(Admin, _super);
-    function Admin(name, age, permissions) {
-        var _this = _super.call(this, name, age) || this;
-        _this.permissions = permissions;
-        return _this;
     }
-    return Admin;
-}(User));
-var user = new User("Max", 30);
+}
+class Admin extends User {
+    constructor(name, age, permissions) {
+        super(name, age);
+        this.permissions = permissions;
+    }
+}
+const user = new User("Max", 30);
 console.log(user.name, user.age);
-var num1Input = document.getElementById("num1");
-var num2Input = document.getElementById("num2");
-var buttonElement = document.querySelector("button");
+const num1Input = document.getElementById("num1");
+const num2Input = document.getElementById("num2");
+// const buttonElement = document.querySelector("button") as HTMLButtonElement;
+const buttonElement = document.getElementById("button");
 function addNum(a, b) {
     return a + b;
 }
@@ -69,20 +52,21 @@ function printResult2(result, printMode) {
         alert(result);
     }
 }
-var resultNum = addNum(5, 3);
-var isDone = false;
+const resultNum = addNum(5, 3);
+let isDone = false;
 console.log(resultNum);
 // let resultsArray: number[] = [];
 // const resultsArray: { res: number; print: () => void }[] = []
-var resultsArray = [];
-buttonElement.addEventListener("click", function () {
-    var num1 = +num1Input.value;
-    var num2 = +num2Input.value;
-    var result = addNum(num1, num2);
+// const resultsArray: Array<CalculationContainer> = [];
+const resultsArray = [];
+buttonElement.addEventListener("click", () => {
+    const num1 = +num1Input.value;
+    const num2 = +num2Input.value;
+    const result = addNum(num1, num2);
     // const resultContianer: { res: number; print: () => void } = {
-    var resultContianer = {
+    const resultContianer = {
         res: result,
-        print: function () {
+        print() {
             console.log(this.res);
         },
     };
@@ -93,3 +77,8 @@ buttonElement.addEventListener("click", function () {
     printResult2(resultsArray, OutputMode.ALERT);
     // resultsArray[0].print();
 });
+function logAndEcho(val) {
+    console.log(val);
+    return val;
+}
+logAndEcho("Hi there!").split(" ");

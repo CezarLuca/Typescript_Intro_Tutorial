@@ -38,7 +38,8 @@ console.log(user.name, user.age);
 
 const num1Input = document.getElementById("num1") as HTMLInputElement;
 const num2Input = document.getElementById("num2") as HTMLInputElement;
-const buttonElement = document.querySelector("button") as HTMLButtonElement;
+// const buttonElement = document.querySelector("button") as HTMLButtonElement;
+const buttonElement = document.getElementById("button")!;
 
 function addNum(a: number, b: number): number {
   return a + b;
