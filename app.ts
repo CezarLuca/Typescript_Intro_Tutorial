@@ -6,8 +6,30 @@ function addNum(a: number, b: number): number {
   return a + b;
 }
 
-function printResult(result: any): void {
-  console.log(result);
+enum OutputMode {
+  CONSOLE,
+  ALERT,
+}
+
+// function printResult(result: any, printMode: string) {
+function printResult(
+  result: CalculationResults[],
+  printMode: "console" | "alert"
+) {
+  if (printMode === "console") {
+    console.log(result);
+  } else if (printMode === "alert") {
+    alert(result);
+  }
+  // console.log(result);
+}
+
+function printResult2(result: CalculationResults[], printMode: OutputMode) {
+  if (printMode === OutputMode.CONSOLE) {
+    console.log(result);
+  } else if (printMode === OutputMode.ALERT) {
+    alert(result);
+  }
 }
 
 const resultNum = addNum(5, 3);
@@ -15,7 +37,7 @@ let isDone: boolean = false;
 
 console.log(resultNum);
 
-printResult(resultNum);
+// printResult(resultNum);
 
 type CalculationResults = { res: number; print: () => void };
 
@@ -35,6 +57,9 @@ buttonElement.addEventListener("click", () => {
     },
   };
   resultsArray.push(resultContianer);
-  // printResult(resultsArray);
-  resultsArray[0].print();
+  printResult(resultsArray, "console");
+  printResult(resultsArray, "alert");
+  printResult2(resultsArray, OutputMode.CONSOLE);
+  printResult2(resultsArray, OutputMode.ALERT);
+  // resultsArray[0].print();
 });

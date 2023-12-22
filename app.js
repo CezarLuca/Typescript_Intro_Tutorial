@@ -4,13 +4,32 @@ var buttonElement = document.querySelector("button");
 function addNum(a, b) {
     return a + b;
 }
-function printResult(result) {
-    console.log(result);
+var OutputMode;
+(function (OutputMode) {
+    OutputMode[OutputMode["CONSOLE"] = 0] = "CONSOLE";
+    OutputMode[OutputMode["ALERT"] = 1] = "ALERT";
+})(OutputMode || (OutputMode = {}));
+// function printResult(result: any, printMode: string) {
+function printResult(result, printMode) {
+    if (printMode === "console") {
+        console.log(result);
+    }
+    else if (printMode === "alert") {
+        alert(result);
+    }
+    // console.log(result);
+}
+function printResult2(result, printMode) {
+    if (printMode === OutputMode.CONSOLE) {
+        console.log(result);
+    }
+    else if (printMode === OutputMode.ALERT) {
+        alert(result);
+    }
 }
 var resultNum = addNum(5, 3);
 var isDone = false;
 console.log(resultNum);
-printResult(resultNum);
 // let resultsArray: number[] = [];
 // const resultsArray: { res: number; print: () => void }[] = []
 var resultsArray = [];
@@ -26,6 +45,9 @@ buttonElement.addEventListener("click", function () {
         },
     };
     resultsArray.push(resultContianer);
-    // printResult(resultsArray);
-    resultsArray[0].print();
+    printResult(resultsArray, "console");
+    printResult(resultsArray, "alert");
+    printResult2(resultsArray, OutputMode.CONSOLE);
+    printResult2(resultsArray, OutputMode.ALERT);
+    // resultsArray[0].print();
 });
